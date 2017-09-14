@@ -4,9 +4,9 @@ class Item
   attr_reader :id, :rank
   attr_accessor :name
 
-  def initialize(name, rank)
-    @name = name
-    @rank = rank
+  def initialize(attributes)
+    @name = attributes.fetch(:name)
+    @rank = attributes.fetch(:rank)
     @id = @@list.length + 1
   end
 
@@ -32,14 +32,14 @@ class Item
     end
   end
 
-  def self.find_index(id)
-    item_id = id.to_i()
-    @@list.each do |item|
-      if item.id == item_id
-        return item
-      end
-    end
-  end
+  # def self.find_index(id)
+  #   item_id = id.to_i()
+  #   @@list.each do |item|
+  #     if item.id == item_id
+  #       return item
+  #     end
+  #   end
+  # end
 
 
   def self.sort()
@@ -57,7 +57,4 @@ class Item
     end
     return_value
   end
-  # def update(id)
-  #   if item.find
-  # end
 end

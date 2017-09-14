@@ -14,7 +14,7 @@ post('/') do
   name = params["name"]
   rank = params["rank"].to_i
   if Item.validation(name, rank.to_i)
-    item = Item.new(name, rank)
+    item = Item.new({:name=> name, :rank=> rank})
     item.save()
     @list = Item.sort()
   else
@@ -23,13 +23,20 @@ post('/') do
   erb(:list)
 end
 
-get('/items/:id') do
+get('/item/:id') do
   @id = params["id"]
   @item = Item.find(params[:id])
   erb(:item)
 end
 
 get('/edit/:id') do
+  @id = params["id"]
+  @item = Item.find(params[:id])
+  erb(:edit)
+end
+
+post('/edit/:id') do
+  @id = params["id"]
   @item = Item.find(params[:id])
   updateName = params["updateName"]
   @item.name = updateName

@@ -1,5 +1,7 @@
-<form action = "/edit" method = "get">
+<h1>Editing <%= @item.name %></h1>
+<form action = "/edit/<%= @id %>" method = "post">
 <label for ="updateName">Update the name</label>
 <input id="updateName" name="updateName" type="text">
 <button type = "submit">Submit</button>
 </form>
+<a href ="/">Return to your home</a>
